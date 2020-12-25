@@ -9,10 +9,10 @@ class MainPollView(CreateView):
     model = SearchModel
     fields = "__all__"
 
-    def start_crawling(self):
+    def get_last(self):
         poll_result = SearchModel.objects.all().last()
-        print(poll_result.mileage)
+        print(poll_result.brand)
 
     def get_success_url(self):
-        self.print_google()
+        self.get_last()
         return reverse('main_poll')
