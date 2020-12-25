@@ -4,8 +4,8 @@ from .models import SearchModel, AutoRiaBrandModel
 class SearchModelAdmin(admin.ModelAdmin):
     pass
 
-class AutoRiaBrandModel(admin.ModelAdmin):
+class AutoRiaBrandModelAdmin(admin.ModelAdmin):
     pass
     
 admin.site.register(SearchModel, SearchModelAdmin)
-admin.site.register(AutoRiaBrandModel, SearchModelAdmin)
+admin.site.register(AutoRiaBrandModel, AutoRiaBrandModelAdmin)
