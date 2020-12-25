@@ -76,9 +76,6 @@ MONGODB_PORT = 8000
 MONGODB_DB = "carauto"
 MONGODB_COLLECTION = "cars"
 
-ITEM_PIPELINES = {
-   'carauto_scraper.pipelines.MongoDbPipeline': 200,
-}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

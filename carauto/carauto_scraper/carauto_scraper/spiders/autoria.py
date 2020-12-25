@@ -10,7 +10,13 @@ class AutoriaSpider(scrapy.Spider):
     allowed_domains = ['auto.ria.com']
     start_urls = [
         'https://auto.ria.com/search/?categories.main.id=1&price.currency=1&price.USD.lte=5000&indexName=auto&brand.id[0]=6&size=100&page=0',
+        "https://auto.ria.com//search/?icategories.main.id=1&brand.id[0]=6&year[0].gte=2000&year[0].lte=2015&price.USD.gte=4000&price.USD.lte=6997&fuel.id[0]=1&drive.id[0]=2&size=100&mileage.gte=25000&mileage.lte=99995"
     ]
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'carauto_scraper.pipelines.MongoDbPipeline': 200,
+        }
+    }
 
     def parse(self, response):
         searchResults = response.xpath("//div[@id='searchResults']")
