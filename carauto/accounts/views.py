@@ -19,9 +19,9 @@ class RegisterView(View):
             username = form.cleaned_data.get("username")
             messages.success(
                 request,
-                f"Account created for {username} successfuly!"
+                f"Account created for {username} successfuly, please log in!"
                 )
-            return redirect("main_poll")
+            return redirect("login")
         else:
             messages.warning(
                 request,

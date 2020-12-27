@@ -1,0 +1,23 @@
+<h3>Login Page</h3>
+
+{% if messages %}
+    {% for message in messages %}
+        <div>
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<form method="POST" action="">
+
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <input type="submit" name="Create User">    
+</form>
+
+<div>
+    <small>
+        Need an account? <a href="{% url 'register' %}">Sign Up</a>
+    </small>
+</div>
