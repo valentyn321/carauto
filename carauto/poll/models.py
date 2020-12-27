@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class AutoRiaBrandModel(models.Model):
     brand_id = models.CharField(max_length=8)
     brand_name = models.CharField(max_length=128)
@@ -23,8 +24,31 @@ class SearchModel(models.Model):
     max_year = models.IntegerField()
     min_mileage = models.IntegerField()
     max_mileage = models.IntegerField()
-    fuel = models.CharField(max_length=64)
-    drive_type = models.CharField(max_length=128)
+    fuel = models.CharField(
+        max_length=64,
+        choices=[
+            ("1", "Бензин"),
+            ("2", "Дизель"),
+            ("3", "Газ"),
+            ("4", "Газ / Бензин"),
+            ("5", "Гібрид"),
+            ("6", "Електро"),
+            ("7", "Інше"),
+            ("8", "Газ метан"),
+            ("9", "Газ пропан-бутан")
+            ]
+        )
+    drive_type = models.CharField(
+        max_length=128,
+        choices=[
+            ("1", "Повний"),
+            ("2", "Передній"),
+            ("3", "Задній"),
+            ("4", "Кардан"),
+            ("5", "Ремінь"),
+            ("6", "Ланцюг")
+            ]
+        )
 
     def brands_choices(self):
         res = []
