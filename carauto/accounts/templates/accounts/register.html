@@ -1,0 +1,23 @@
+<h3>Register Page</h3>
+
+{% if messages %}
+    {% for message in messages %}
+        <div>
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<form method="POST" action="">
+
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <input type="submit" name="Create User">    
+</form>
+
+<div>
+    <small>
+        Already have an account? <a href="#">Log In</a>
+    </small>
+</div>

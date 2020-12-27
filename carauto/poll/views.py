@@ -30,7 +30,8 @@ uel.id[0]={last_poll_result.fuel}&\
 rive.id[0]={last_poll_result.fuel}&\
 mileage.gte={last_poll_result.min_mileage}&\
 mileage.lte={last_poll_result.max_mileage}&\
-size=100"
+size=100&\
+page=0"
         
         print(request_url)
         try:
