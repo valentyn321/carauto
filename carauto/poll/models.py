@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class AutoRiaBrandModel(models.Model):
@@ -49,6 +50,7 @@ class SearchModel(models.Model):
             ("6", "Ланцюг")
             ]
         )
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
 
     def brands_choices(self):
         res = []

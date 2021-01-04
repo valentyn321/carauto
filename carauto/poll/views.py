@@ -2,8 +2,8 @@ import scrapy
 
 from scrapy.crawler import CrawlerProcess
 from django.views.generic.edit import CreateView
-from django.http import HttpResponse
-from django.shortcuts import render, reverse
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 
 from poll.models import SearchModel
 from carauto_scraper.carauto_scraper.spiders.autoria import AutoriaSpider 
@@ -12,7 +12,18 @@ from carauto_scraper.carauto_scraper.spiders.autoria import AutoriaSpider
 class MainPollView(CreateView):
     template_name = 'poll/main_poll.html'
     model = SearchModel
-    fields = "__all__"
+    success_url = 'profile'
+    fields = [
+        'brand',
+        'min_price',
+        'max_price',
+        'min_year',
+        'max_year',
+        'min_mileage',
+        'max_mileage',
+        'fuel',
+        'drive_type'
+    ]
 
     def get_last(self):
         poll_result = SearchModel.objects.all().last()
@@ -34,15 +45,17 @@ size=100&\
 page=0"
         
         print(request_url)
-        try:
-            process = CrawlerProcess()
-            process.crawl(AutoriaSpider, start_urls=[request_url])
-            process.start()
-        except:
-            print("Crawling did not start")
+        # try:
+        #     process = CrawlerProcess()
+        #     process.crawl(AutoriaSpider, start_urls=[request_url])
+        #     process.start()
+        # except:
+        #     print("Crawling did not start")
 
-
-    def get_success_url(self):
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
         self.url_generator()
-        return reverse('main_poll')
+        return HttpResponseRedirect(self.get_success_url())
 

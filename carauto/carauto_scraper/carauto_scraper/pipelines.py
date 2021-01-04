@@ -23,6 +23,22 @@ class MongoDbPipeline(object):
         )
         return item
 
+class PostgresPipeline(object):
+
+    def process_item(self, item, spider):
+        item["mileage"] = re.sub("[^0-9]", "", item["mileage"])
+
+        CarModel.objects.create(
+            link=item["link"],
+            name=item["name"],
+            price=int(item["price"].replace(" ", "")),
+            year=item["year"],
+            mileage=int(item["mileage"]),
+            fuel=item["fuel"],
+            drive_type=item["drive_type"]
+        )
+        return item
+
 
 class AutoRiaBrandPipeline(object):
     

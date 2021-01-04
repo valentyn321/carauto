@@ -10,7 +10,7 @@ class AutoriaSpider(scrapy.Spider):
     allowed_domains = ['auto.ria.com']
     custom_settings = {
         'ITEM_PIPELINES': {
-            'carauto_scraper.carauto_scraper.pipelines.MongoDbPipeline': 200,
+            'carauto_scraper.carauto_scraper.pipelines.PostgresPipeline': 200,
         }
     }
 

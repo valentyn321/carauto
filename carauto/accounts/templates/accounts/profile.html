@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+ <h1>{{ user.username }}</h1>
+
+<h2>Last Polls</h2>
+<ul>
+{% for search in searches %}
+    <li>{{ search.brand }} - {{ search.max_price }}</li>
+{% empty %}
+    <li>No articles yet.</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

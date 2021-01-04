@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'carauto_scraper',
     'accounts',
     'search_result',
@@ -80,11 +81,12 @@ WSGI_APPLICATION = 'carauto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'carauto',
-        'CLIENT': {
-           'host': 'mongodb+srv://valentyn:valentyn24@carauto.7j760.mongodb.net/carauto?retryWrites=true&w=majority',
-        }, 
+        'USER': 'valentyn',
+        'PASSWORD': 'cherkasov100',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -126,6 +128,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

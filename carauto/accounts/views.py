@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic import View
+from django.contrib.auth.decorators import login_required
+from django.views.generic import View, ListView
 
 from accounts.forms import UserRegisterForm
+
+from poll.models import SearchModel
 
 
 class RegisterView(View):
@@ -30,3 +33,14 @@ class RegisterView(View):
             return redirect('register')
 
 
+# @login_required
+# def profile(request):
+#     return render(request, 'accounts/profile.html', {})
+
+class LastPollsListView(ListView):
+    template_name = "accounts/profile.html"
+    context_object_name = 'searches'
+    
+    def get_queryset(self):
+        queryset = SearchModel.objects.filter(user=self.request.user)
+        return queryset

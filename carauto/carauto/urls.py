@@ -25,8 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('poll', login_required(poll_views.MainPollView.as_view()), name='main_poll'),
 
-	path('register', accounts_views.RegisterView.as_view(), name='register'),
-
+    path('register', accounts_views.RegisterView.as_view(), name='register'),
+    path('profile', accounts_views.LastPollsListView.as_view(), name='profile'),
+    
     path('login', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('logout', auth_views.LogoutView.as_view(template_name='accounts/logout.html'), name='logout'),
+
 ]

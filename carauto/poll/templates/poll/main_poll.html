@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
 {% if messages %}
     {% for message in messages %}
         <div>
@@ -6,7 +11,12 @@
     {% endfor %}
 {% endif %}
 
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Send message">
-</form>
+<div class="container-md mt-4">
+  <form method="post">{% csrf_token %}
+      {{ form|crispy }}
+      <input type="submit" class="btn btn-dark mt-4" value="Get Cars!">
+  </form>
+</div>
+
+
+{% endblock %}
