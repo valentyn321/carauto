@@ -7,18 +7,7 @@ class AutoRiaBrandModel(models.Model):
     brand_name = models.CharField(max_length=128)
 
 class SearchModel(models.Model):
-
-    def brands_choices():
-        res = []
-        all_brands = AutoRiaBrandModel.objects.all()
-        for brand in all_brands:
-            res.append((brand.brand_id, brand.brand_name))
-        return res
-
-    brand = models.CharField(
-        max_length=128,
-        choices=brands_choices()
-        )
+    brand = models.ForeignKey(AutoRiaBrandModel,on_delete=models.CASCADE)
     min_price = models.DecimalField(max_digits=8, decimal_places=2)
     max_price = models.DecimalField(max_digits=8, decimal_places=2)
     min_year = models.IntegerField()

@@ -10,21 +10,21 @@ from poll.models import SearchModel
 
 class RegisterView(View):
     form = UserRegisterForm()
-    template_name = "accounts/register.html"
+    template_name = 'accounts/register.html'
 
     def get(self, request):
-        return render(request, self.template_name, {"form": self.form})
+        return render(request, self.template_name, {'form': self.form})
 
     def post(self, request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get("username")
+            username = form.cleaned_data.get('username')
             messages.success(
                 request,
-                f"Account created for {username} successfuly, please log in!"
+                f'Account created for {username} successfuly, please log in!'
                 )
-            return redirect("login")
+            return redirect('login')
         else:
             messages.warning(
                 request,
@@ -38,9 +38,9 @@ class RegisterView(View):
 #     return render(request, 'accounts/profile.html', {})
 
 class LastPollsListView(ListView):
-    template_name = "accounts/profile.html"
+    template_name = 'accounts/profile.html'
     context_object_name = 'searches'
     
     def get_queryset(self):
-        queryset = SearchModel.objects.filter(user=self.request.user)
+        queryset = SearchModel.objects.filter(user=self.request.user).select_related('brand')
         return queryset

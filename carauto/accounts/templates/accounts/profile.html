@@ -3,15 +3,32 @@
 
 {% block content %}
 
- <h1>{{ user.username }}</h1>
-
-<h2>Last Polls</h2>
-<ul>
-{% for search in searches %}
-    <li>{{ search.brand }} - {{ search.max_price }}</li>
-{% empty %}
-    <li>No articles yet.</li>
-{% endfor %}
-</ul>
-
+  <h1>Вітаємо, {{ user.username }}!</h1>
+  <p class="fs-4 fw-light">Тут ви можете побачити свої останні пошуки</p>
+  <table class="table table-hover table-bordered mt-4">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Бренд</th>
+        <th scope="col">Діапазон цін</th>
+        <th scope="col">Діапазон років</th>
+        <th scope="col">Діапазон пробігу</th>
+        <th scope="col">Тип пального</th>
+        <th scope="col">Тип приводу</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for search in searches %}
+      <tr>
+        <td scope="row">{{ search.brand.brand_name }}</td>
+        <td>{{ search.min_price }}$ - {{ search.max_price }}$</td>
+        <td>{{ search.min_year }} - {{ search.max_year }}</td>
+        <td>{{ search.min_mileage }} тис. км - {{ search.max_mileage }} тис. км</td>
+        <td scope="row">{{ search.fuel}}</td>
+        <td scope="row">{{ search.drive_type }}</td>
+      </tr>
+      </form>
+    </tbody>
+  </table>
+  
 {% endblock %}
+
